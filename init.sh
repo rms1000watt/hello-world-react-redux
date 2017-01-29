@@ -13,6 +13,8 @@ mkdir src/middleware
 touch src/store/index.js
 touch src/middleware/index.js
 
-npm install --save react-redux redux react-router react-router-redux react-bootstrap
+npm install --save react-redux redux react-router react-router-redux
 
-# update src/store/index.js with https://github.com/tj/frontend-boilerplate/blob/master/client/store/index.js
+# Used code from https://github.com/tj/frontend-boilerplate
+
+git push https://rms1000watt@github.com/rms1000watt/hello-world-react-redux.git master:master
