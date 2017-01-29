@@ -27,7 +27,7 @@ const user = (state = [], action) => {
         })
     case BIRTHDAY_TODAY:
         return Object.assign({}, state, {
-            age: action.age,
+            age: action.age + 1,
         })
     default:
       return state
