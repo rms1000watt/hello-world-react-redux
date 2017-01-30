@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
-
 import { logger } from '../middleware'
 import rootReducer from '../reducers'
+import thunk from 'redux-thunk';
 
 export default function configure(initialState) {
   const create = window.devToolsExtension
@@ -9,10 +9,28 @@ export default function configure(initialState) {
     : createStore ;
 
   const createStoreWithMiddleware = applyMiddleware(
-    logger
+    logger,
+    thunk
   )(create)
 
   const store = createStoreWithMiddleware(rootReducer, initialState)
 
   return store
 }
+
+export const user = {
+  firstName: 'John',
+  lastName: 'Doe',
+  age: 0,
+  id: 0,
+}
+
+export const query = {
+  google: '',
+  yahoo: '',
+}
+
+export const initState = {
+  user,
+  query,
+};

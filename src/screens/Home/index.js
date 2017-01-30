@@ -1,16 +1,35 @@
 import { Link } from 'react-router';
+import { connect } from 'react-redux'
 import React from 'react';
 
 class Home extends React.Component {
   render() {
     return (
       <div>
-        Hello World React Redux
-        <br/>
-        <Link to='/profile'>Profile Page</Link>
+        Hello World React Redux<br/>
+        <Link to='/profile'>Profile Page</Link><br/>
+        <Link to='/query'>Query Page</Link><br/><br/>
+
+
+        Redux User Object...<br/>
+        First Name: {this.props.user.firstName}<br/>
+        Last Name: {this.props.user.lastName}<br/>
+        Age: {this.props.user.age}<br/>
+        Id: {this.props.user.id}<br/><br/>
+
+        Redux Query Object...<br/>
+        Google: {this.props.query.google}<br/>
+        Yahoo: {this.props.query.yahoo}<br/>
       </div>
     );
   }
 }
 
-export default Home;
+function mapStateToProps(globalState) {
+    return {
+        user: globalState.user,
+        query: globalState.query,
+    };
+}
+
+export default connect(mapStateToProps)(Home);

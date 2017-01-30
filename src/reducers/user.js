@@ -5,13 +5,7 @@ import {
     BIRTHDAY_TODAY,
 } from '../actions/';
 
-// const initState = [{
-//     firstName: '',
-//     lastName: '',
-//     age: 0,
-// }]
-
-const user = (state = [], action) => {
+const user = (state = {}, action) => {
   switch (action.type) {
     case CHANGE_FIRST_NAME:
         return Object.assign({}, state, {
@@ -27,7 +21,7 @@ const user = (state = [], action) => {
         })
     case BIRTHDAY_TODAY:
         return Object.assign({}, state, {
-            age: action.age + 1,
+            age: parseInt(state.age, 10) + 1,
         })
     default:
       return state

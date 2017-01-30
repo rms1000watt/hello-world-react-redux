@@ -13,7 +13,7 @@ mkdir src/middleware
 touch src/store/index.js
 touch src/middleware/index.js
 
-npm install --save react-redux redux react-router react-router-redux
+npm install --save react-redux redux react-router react-router-redux redux-thunk
 
 # Used code from https://github.com/tj/frontend-boilerplate
 
