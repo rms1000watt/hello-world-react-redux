@@ -1,17 +1,17 @@
 import { 
-    QUERY_GOOGLE,
-    QUERY_YAHOO,
+    QUERY_LOCALHOST,
+    QUERY_ERROR,
 } from '../actions/';
 
 const query = (state = {}, action) => {
   switch (action.type) {
-    case QUERY_GOOGLE:
+    case QUERY_LOCALHOST:
         return Object.assign({}, state, {
-            google: action.res,
+            localhost: action.localhost,
         })
-    case QUERY_YAHOO:
+    case QUERY_ERROR:
         return Object.assign({}, state, {
-            yahoo: action.res,
+            error: action.error,
         })
     default:
       return state

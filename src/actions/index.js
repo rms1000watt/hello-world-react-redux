@@ -30,43 +30,34 @@ export const birthdayToday = () => {
   }
 }
 
-export const QUERY_GOOGLE = 'QUERY_GOOGLE';
-export const QUERY_YAHOO = 'QUERY_YAHOO';
+export const QUERY_LOCALHOST = 'QUERY_LOCALHOST';
+export const QUERY_ERROR = 'QUERY_ERROR';
 
-const queryGoogleAction = (res) => {
+const _queryLocalhost = (localhost) => {
   return {
-    type: QUERY_GOOGLE,
-    res,
+    type: QUERY_LOCALHOST,
+    localhost,
   }
 }
 
-const queryYahooAction = (res) => {
+const _queryError = (error) => {
   return {
-    type: QUERY_YAHOO,
-    res,
+    type: QUERY_ERROR,
+    error,
   }
 }
 
-export const queryGoogle = () => {
+export const queryLocalhost = () => {
   return function (dispatch) {
-    // Dispatch "loading" action
-    // TODO: Use a proper URL that lets no-cors
-    var request = new Request("https://jsonplaceholder.typicode.com/posts/1", {mode: 'no-cors'});
+    // TODO: Dispatch "loading" action
+    var request = new Request("http://localhost:3000/");
+    // var request = new Request("http://google.com/");
     return fetch(request)
     .then((response) => {
-      // Dispatch "parsing" action again
-      
-      // TODO: Fix this.. empty body is not letting json unmarshaling
-      return response.json();
+      // TODO: Dispatch "parsing" action
+      return response.text();
     })
-    .then((result) => {dispatch(queryGoogleAction(result))})
-    .catch((err) => {console.log(err)})
+    .then((result) => {dispatch(_queryLocalhost(result))})
+    .catch((error) => {dispatch(_queryError(error.message))})
   }
 }
-
-export const queryYahoo = () => {
-  return {
-    type: QUERY_YAHOO,
-  }
-}
-

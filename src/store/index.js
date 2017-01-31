@@ -26,8 +26,8 @@ export const user = {
 }
 
 export const query = {
-  google: '',
-  yahoo: '',
+  localhost: '',
+  error: '',
 }
 
 export const initState = {

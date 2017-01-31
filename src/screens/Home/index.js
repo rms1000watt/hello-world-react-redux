@@ -18,8 +18,8 @@ class Home extends React.Component {
         Id: {this.props.user.id}<br/><br/>
 
         Redux Query Object...<br/>
-        Google: {this.props.query.google}<br/>
-        Yahoo: {this.props.query.yahoo}<br/>
+        Localhost: {this.props.query.localhost}<br/>
+        Error: {this.props.query.error}<br/>
       </div>
     );
   }
