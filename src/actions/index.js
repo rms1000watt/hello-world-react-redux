@@ -32,6 +32,8 @@ export const birthdayToday = () => {
 
 export const QUERY_LOCALHOST = 'QUERY_LOCALHOST';
 export const QUERY_ERROR = 'QUERY_ERROR';
+export const QUERY_LOADING = 'QUERY_LOADING';
+export const QUERY_PARSING = 'QUERY_PARSING';
 
 const _queryLocalhost = (localhost) => {
   return {
@@ -47,17 +49,39 @@ const _queryError = (error) => {
   }
 }
 
+const _queryLoading = (isLoading) => {
+  return {
+    type: QUERY_LOADING,
+    isLoading,
+  }
+}
+
+const _queryParsing = (isParsing) => {
+  return {
+    type: QUERY_PARSING,
+    isParsing,
+  }
+}
+
 export const queryLocalhost = () => {
   return function (dispatch) {
-    // TODO: Dispatch "loading" action
+    dispatch(_queryLoading(true))
     var request = new Request("http://localhost:3000/");
     // var request = new Request("http://google.com/");
     return fetch(request)
     .then((response) => {
-      // TODO: Dispatch "parsing" action
+      dispatch(_queryParsing(true))
       return response.text();
     })
-    .then((result) => {dispatch(_queryLocalhost(result))})
-    .catch((error) => {dispatch(_queryError(error.message))})
+    .then((result) => {
+      dispatch(_queryLocalhost(result))
+      dispatch(_queryLoading(false))
+      dispatch(_queryParsing(false))
+    })
+    .catch((error) => {
+      dispatch(_queryError(error.message))
+      dispatch(_queryLoading(false))
+      dispatch(_queryParsing(false))
+    })
   }
 }

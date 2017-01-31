@@ -28,6 +28,8 @@ export const user = {
 export const query = {
   localhost: '',
   error: '',
+  isLoading: false,
+  isParsing: false,
 }
 
 export const initState = {

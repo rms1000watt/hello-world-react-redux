@@ -5,7 +5,6 @@ import React from 'react';
 
 class Query extends React.Component {
   queryLocalhost = () => {
-    console.log("Starting Google Query...")
     this.props.dispatch(queryLocalhost())
   }
 
@@ -21,6 +20,8 @@ class Query extends React.Component {
 
         Localhost: {this.props.query.localhost}<br/>
         Error: {this.props.query.error}<br/>
+        Loading: {this.props.query.isLoading.toString()}<br/>
+        Parsing: {this.props.query.isParsing.toString()}<br/>
         
       </div>
     );

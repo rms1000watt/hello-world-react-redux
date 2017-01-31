@@ -20,6 +20,8 @@ class Home extends React.Component {
         Redux Query Object...<br/>
         Localhost: {this.props.query.localhost}<br/>
         Error: {this.props.query.error}<br/>
+        Loading: {this.props.query.isLoading.toString()}<br/>
+        Parsing: {this.props.query.isParsing.toString()}<br/>
       </div>
     );
   }
