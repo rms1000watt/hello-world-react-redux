@@ -1,14 +1,16 @@
-import { createStore, applyMiddleware } from 'redux'
-import { logger } from '../middleware'
-import rootReducer from '../reducers'
+import { createStore, applyMiddleware } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
+import { logger } from '../middleware';
+import rootReducer from '../reducers';
 
-export default function configure(initialState) {
+export default function configure(initialState, history) {
   const create = window.devToolsExtension
     ? window.devToolsExtension()(createStore)
-    : createStore ;
+    : createStore;
 
   const createStoreWithMiddleware = applyMiddleware(
+    routerMiddleware(history),
     logger,
     thunk
   )(create)
